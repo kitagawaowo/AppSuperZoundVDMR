@@ -1,13 +1,15 @@
 package pe.edu.upc.appsuperzound.data.local
 
+import androidx.room.Dao
 import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.Query
 
+@Dao
 interface AlbumDao {
-    @Query("SELECT * FROM albums WHERE id=:id")
+    @Query("SELECT * FROM album WHERE id=:id")
     fun fetchById(id: String): List<AlbumEntity>
-    @Query("SELECT * FROM albums")
+    @Query("SELECT * FROM album")
     fun fetchAll(): List<AlbumEntity>
 
     @Insert
