@@ -31,7 +31,7 @@ import pe.edu.upc.appsuperzound.data.model.Album
 import pe.edu.upc.superherocompose.ui.screens.product.ProductCard
 
 @Composable
-fun FavoriteAlbumList(viewModel: AlbumViewModel) {
+fun FavoriteAlbumScreen(viewModel: AlbumViewModel) {
     val favorites by viewModel.favoriteAlbums.observeAsState(listOf())
     viewModel.fetchFavorites()
 
@@ -51,7 +51,7 @@ fun FavoriteAlbumList(viewModel: AlbumViewModel) {
     }
 }
 @Composable
-fun AlbumList(viewModel: AlbumViewModel) {
+fun AlbumScreen(viewModel: AlbumViewModel) {
     val albums by viewModel.albums.observeAsState(listOf())
     LazyColumn {
         items(albums) { album ->
