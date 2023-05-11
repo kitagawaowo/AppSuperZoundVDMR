@@ -1,4 +1,7 @@
 package pe.edu.upc.appsuperzound.data.remote
 
-class AlbumResponse {
-}
+import pe.edu.upc.appsuperzound.data.model.Album
+
+data class AlbumResponse(
+    val albums: List<Album>?
+)
