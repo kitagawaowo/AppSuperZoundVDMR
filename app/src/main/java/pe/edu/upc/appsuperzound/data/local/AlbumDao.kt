@@ -7,9 +7,9 @@ import androidx.room.Query
 
 @Dao
 interface AlbumDao {
-    @Query("SELECT * FROM album WHERE id=:id")
+    @Query("SELECT * FROM Album WHERE id=:id")
     fun fetchById(id: String): List<AlbumEntity>
-    @Query("SELECT * FROM album")
+    @Query("SELECT * FROM Album")
     fun fetchAll(): List<AlbumEntity>
 
     @Insert

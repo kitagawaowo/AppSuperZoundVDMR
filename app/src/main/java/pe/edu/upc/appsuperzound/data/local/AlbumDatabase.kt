@@ -15,7 +15,7 @@ abstract class AlbumDatabase: RoomDatabase() {
             INSTANCE = Room.databaseBuilder(
                 context,
                 AlbumDatabase::class.java,
-                "album2.db"
+                "album3.db"
             )
                 .allowMainThreadQueries()
                 .build()

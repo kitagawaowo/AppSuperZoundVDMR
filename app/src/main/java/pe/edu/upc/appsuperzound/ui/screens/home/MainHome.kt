@@ -1,5 +1,6 @@
 package pe.edu.upc.appsuperzound.ui.screens.home
 
+import android.annotation.SuppressLint
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -50,7 +51,7 @@ fun HomeNavigation (viewModel: AlbumViewModel) {
 fun HomeScreen(
     navigateFind: () -> Unit = {},
     navigateFavorites: () -> Unit = {},
-    modifier: Modifier = Modifier
+    @SuppressLint("ModifierParameter") modifier: Modifier = Modifier
 ) {
 
     Column(
@@ -58,7 +59,7 @@ fun HomeScreen(
         horizontalAlignment = Alignment.CenterHorizontally,
     ){
         Text(
-            text = "App List Product",
+            text = "App Super Zound",
             style = TextStyle(
                 fontFamily = FontFamily.SansSerif,
                 fontWeight = FontWeight.Bold,
