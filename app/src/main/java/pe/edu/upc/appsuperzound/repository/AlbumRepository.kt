@@ -4,11 +4,15 @@ import androidx.lifecycle.MutableLiveData
 import pe.edu.upc.appsuperzound.data.local.AlbumDao
 import pe.edu.upc.appsuperzound.data.local.AlbumEntity
 import pe.edu.upc.appsuperzound.data.model.Album
+import pe.edu.upc.appsuperzound.data.remote.AlbumResponse
 import pe.edu.upc.appsuperzound.data.remote.AlbumService
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class AlbumRepository(
-    private val albumDao: AlbumDao,
-    private val albumService: AlbumService
+    private val albumService: AlbumService,
+    private val albumDao: AlbumDao
 ) {
     private val _albums = MutableLiveData<List<Album>>(emptyList())
     val albums get() = _albums
@@ -17,11 +21,26 @@ class AlbumRepository(
     val favoriteAlbums get() = _favoriteAlbums
 
     fun fetchAlbums() {
-        val response = albumService.fetchAlbums().execute()
-        if (response.isSuccessful) {
-            val albums = response.body()?.albums ?: emptyList()
-            _albums.postValue(albums)
-        }
+        val fetchAlbums = albumService.fetchAlbums("album")
+        fetchAlbums.enqueue (object : Callback<AlbumResponse> {
+            override fun onResponse(call: Call<AlbumResponse>, response: Response<AlbumResponse>) {
+                if (response.isSuccessful) {
+                    if (response.body()!!.loved == null) {
+                        _albums.value = emptyList()
+                    } else {
+                        _albums.value = response.body()!!.loved!!
+                        for (album in _albums.value!!) {
+                            album.favorite = albumDao.fetchById(album.id).isNotEmpty()
+                        }
+                    }
+                }
+            }
+
+            override fun onFailure(call: Call<AlbumResponse>, t: Throwable) {
+                TODO("Not yet implemented")
+            }
+
+        })
     }
 
     fun fetchFavoriteAlbums() {

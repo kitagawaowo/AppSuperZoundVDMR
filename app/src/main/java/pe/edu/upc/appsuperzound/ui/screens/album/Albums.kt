@@ -30,7 +30,7 @@ import coil.compose.AsyncImage
 import pe.edu.upc.appsuperzound.data.model.Album
 
 @Composable
-fun FavoriteAlbumScreen(viewModel: AlbumViewModel) {
+fun FavoriteAlbumScreen(viewModel: AlbumsViewModel) {
     val favorites by viewModel.favoriteAlbums.observeAsState(listOf())
     viewModel.fetchFavorites()
 
@@ -50,8 +50,9 @@ fun FavoriteAlbumScreen(viewModel: AlbumViewModel) {
     }
 }
 @Composable
-fun AlbumScreen(viewModel: AlbumViewModel) {
+fun AlbumScreen(viewModel: AlbumsViewModel) {
     val albums by viewModel.albums.observeAsState(listOf())
+    viewModel.fetchAlbums()
     LazyColumn {
         items(albums) { album ->
             AlbumCard(

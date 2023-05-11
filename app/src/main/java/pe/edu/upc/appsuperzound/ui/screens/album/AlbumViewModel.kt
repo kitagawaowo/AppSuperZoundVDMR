@@ -2,15 +2,16 @@ package pe.edu.upc.appsuperzound.ui.screens.album
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
+import androidx.lifecycle.MutableLiveData
 import pe.edu.upc.appsuperzound.data.local.AlbumDatabase
 import pe.edu.upc.appsuperzound.data.model.Album
 import pe.edu.upc.appsuperzound.data.remote.AlbumClient
 import pe.edu.upc.appsuperzound.repository.AlbumRepository
 
-class AlbumViewModel (application: Application) : AndroidViewModel(application) {
+class AlbumsViewModel(application: Application) : AndroidViewModel(application) {
     private val albumService = AlbumClient.albumService()
     private val albumDao = AlbumDatabase.getInstance(application).albumDao()
-    private val albumRepository = AlbumRepository(albumDao, albumService)
+    private val albumRepository = AlbumRepository(albumService, albumDao)
 
     private var _albums = albumRepository.albums
     val albums get() = _albums

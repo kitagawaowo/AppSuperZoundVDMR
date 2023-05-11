@@ -3,7 +3,7 @@ package pe.edu.upc.appsuperzound.data.local
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
-@Entity(tableName = "Album")
+@Entity("Album")
 class AlbumEntity(
     @PrimaryKey
     val id: String,

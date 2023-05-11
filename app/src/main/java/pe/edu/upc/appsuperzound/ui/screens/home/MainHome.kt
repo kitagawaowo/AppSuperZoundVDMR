@@ -25,11 +25,11 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import coil.compose.AsyncImage
 import pe.edu.upc.appsuperzound.ui.screens.album.AlbumScreen
-import pe.edu.upc.appsuperzound.ui.screens.album.AlbumViewModel
+import pe.edu.upc.appsuperzound.ui.screens.album.AlbumsViewModel
 import pe.edu.upc.appsuperzound.ui.screens.album.FavoriteAlbumScreen
 
 @Composable
-fun HomeNavigation (viewModel: AlbumViewModel) {
+fun HomeNavigation (viewModel: AlbumsViewModel) {
     val navController = rememberNavController()
     NavHost(navController = navController, startDestination = "HomeScreen") {
         composable("HomeScreen") {
@@ -51,7 +51,7 @@ fun HomeNavigation (viewModel: AlbumViewModel) {
 fun HomeScreen(
     navigateFind: () -> Unit = {},
     navigateFavorites: () -> Unit = {},
-    @SuppressLint("ModifierParameter") modifier: Modifier = Modifier
+    modifier: Modifier = Modifier
 ) {
 
     Column(
